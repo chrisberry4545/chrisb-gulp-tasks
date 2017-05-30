@@ -3,11 +3,10 @@ const runSequence = require('run-sequence');
 
 module.exports = (config) => {
     gulp.task('build-dev', (cb) => {
-        runSequence(
-            'clean',
-            'compile-ts',
-            'scripts-dev',
-            cb
+        config.buildTasksDev.push(cb);
+        runSequence.apply(
+            null,
+            config.buildDevTasks
         );
     });
 };
